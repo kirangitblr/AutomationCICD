@@ -1,0 +1,18 @@
+package rahulshettyacademy.testcomponents;
+
+import org.testng.ITestListener;
+import org.testng.ITestResult;
+
+import com.aventstack.extentreports.ExtentReports;
+
+import rahulshettyacademy.resources.ExtentReporterNG;
+
+public class Listeners implements ITestListener {
+	ExtentReports extent = ExtentReporterNG.getReportObject();
+
+	@Override
+	public void onTestStart(ITestResult result) {
+		extent.createTest(result.getMethod());
+	}
+
+}

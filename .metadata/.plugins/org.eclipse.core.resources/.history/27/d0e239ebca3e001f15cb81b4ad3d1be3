@@ -1,0 +1,7 @@
+package rahulshettyacademy.pageobjects;
+
+import rahulshettyacademy.AbstractComponents.AbstractComponent;
+
+public class CartPage extends AbstractComponent {
+
+}

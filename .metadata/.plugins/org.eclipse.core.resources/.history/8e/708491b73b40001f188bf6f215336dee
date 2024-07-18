@@ -1,0 +1,41 @@
+package rahulshettyacademy.tests;
+
+import java.io.IOException;
+import java.util.List;
+
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import rahulshettyacademy.pageobjects.CartPage;
+import rahulshettyacademy.pageobjects.ProductCatalogue;
+import rahulshettyacademy.testcomponents.BaseTest;
+
+public class ErrorValidationsTest extends BaseTest {
+
+	@Test(groups = { "ErrorHandling" })
+	public void loginErrorValidation() throws IOException {
+		String productName = "ZARA COAT 3";
+
+		landingPage.loginApplication("kiranblrj@gmail.com", "Hokko@12345");
+
+		Assert.assertEquals("Incorrect email or password.", landingPage.getErrorMessage());
+
+	}
+
+	@Test
+	public void productErrorValidation() throws IOException {
+		String productName = "ZARA COAT 3";
+
+		ProductCatalogue productCatalogue = landingPage.loginApplication("kiranblrj@gmail.com", "Hokko@1234");
+
+		List<WebElement> products = productCatalogue.getProductList();
+		productCatalogue.addProductToCart(productName);
+		CartPage cartPage = productCatalogue.goToCartPage();
+
+		Boolean match = cartPage.verifyProductDisplay("ZARACOAT33");
+		Assert.assertFalse(match);
+
+	}
+
+}
